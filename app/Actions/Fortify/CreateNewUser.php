@@ -29,13 +29,21 @@ class CreateNewUser implements CreatesNewUsers
             'postalcode' => ['required', 'digits_between:5,6', 'numeric'],
         ])->validate();
 
+        $name = strip_tags($input['name']);
+        $email = strip_tags($input['email']);
+        $password = strip_tags($input['password']);
+        $address = strip_tags($input['address']);
+        $phonenum = strip_tags($input['phonenum']);
+        $postalcode = strip_tags($input['phonenum']);
+
         return User::create([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
-            'address' => $input['address'],
-            'phonenum' => $input['phonenum'],
-            'postalcode' => $input['postalcode'],
+            'name' => $name,
+            'email' => $email,
+            'password' => Hash::make($password),
+            'address' => $address,
+            'phonenum' => $phonenum,
+            'postalcode' => $postalcode,
+            'profile_photo_path' => 'users/default-photo.jpg',
         ]);
     }
 }

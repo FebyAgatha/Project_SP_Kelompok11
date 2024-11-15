@@ -19,7 +19,7 @@ class categoryController extends Controller
             'name' => ['required', 'string', 'min:3', 'max:20']
         ]);
 
-        $name = htmlspecialchars($request->input('name'));
+        $name = strip_tags($request->input('name'));
 
         Category::create([
             'name' => $name

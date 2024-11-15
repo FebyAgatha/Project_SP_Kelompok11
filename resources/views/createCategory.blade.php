@@ -6,7 +6,7 @@
         @csrf
         <div>
             <x-label for="name" value="{{ __('Add Book Category:') }}" />
-            <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete=off/>
+            <x-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{old('name')}}" required autofocus autocomplete=off/>
 
             @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>

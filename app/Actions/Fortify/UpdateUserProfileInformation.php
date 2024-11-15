@@ -35,11 +35,11 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $this->updateVerifiedUser($user, $input);
         } else {
             $user->forceFill([
-                'name' => $input['name'],
-                'email' => $input['email'],
-                'address' => $input['address'],
-                'phonenum' => $input['phonenum'],
-                'postalcode' => $input['postalcode'],
+                'name' => strip_tags($input['name']),
+                'email' => strip_tags($input['email']),
+                'address' => strip_tags($input['address']),
+                'phonenum' => strip_tags($input['phonenum']),
+                'postalcode' => strip_tags($input['postalcode']),
             ])->save();
         }
     }

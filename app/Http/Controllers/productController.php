@@ -35,12 +35,13 @@ class productController extends Controller
             'amount' => ['required', 'integer'],
             'image' => ['required', 'mimes:jpg,png,jpeg', 'max:5000']
         ]);
+        
+        $name = strip_tags($request->input('name'));
 
         $extension = $request->file('image')->getClientOriginalExtension();
-        $filename = $request->name.'.'.$extension;
+        $filename = $name.'.'.$extension;
         $request->file('image')->storeAs('/products', $filename, 'public');
 
-        $name = htmlspecialchars($request->input('name'));
 
         Product::create([
             'name' => $name,
@@ -112,7 +113,7 @@ class productController extends Controller
             $product->image = $filename; // Update nama file gambar
         }
         
-        $name = htmlspecialchars($request->input('name'));
+        $name = strip_tags($request->input('name'));
 
         // Update data produk
         $product->name = $name;

@@ -21,7 +21,7 @@
 
         <div>
             <x-label for="name" value="{{ __('Product Name') }}" />
-            <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete=off/>
+            <x-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{old('name')}}" required autofocus autocomplete=off/>
             @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -29,7 +29,7 @@
 
         <div>
             <x-label for="price" value="{{ __('Product Price') }}" />
-            <x-input id="price" class="block mt-1 w-full" type="number" name="price" :value="old('price')" required autofocus autocomplete=off/>
+            <x-input id="price" class="block mt-1 w-full" type="number" name="price" value="{{old('price')}}" required autofocus autocomplete=off/>
             @error('price')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -37,7 +37,7 @@
 
         <div>
             <x-label for="amount" value="{{ __('Product Amount') }}" />
-            <x-input id="amount" class="block mt-1 w-full" type="number" name="amount" :value="old('amount')" required autofocus autocomplete=off/>
+            <x-input id="amount" class="block mt-1 w-full" type="number" name="amount" value="{{old('amount')}}" required autofocus autocomplete=off/>
             @error('amount')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
