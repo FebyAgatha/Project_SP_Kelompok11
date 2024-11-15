@@ -36,7 +36,7 @@
 
             <div class="mt-4">
                 <x-label for="phonenum" value="{{ __('Phone Number') }}" />
-                <x-input id="phonenum" class="block mt-1 w-full" type="text" name="phonenum" required autocomplete=off/>
+                <x-input id="phonenum" class="block mt-1 w-full" type="text" name="phonenum" required placeholder="08XXXXXXXXXX" autocomplete=off/>
                 @error('phonenum')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
