@@ -32,20 +32,6 @@ class UserSeeder extends Seeder
                 'is_admin'  => 1,
                 'created_at'=> Carbon::now(),
                 'updated_at'=> Carbon::now(),
-            ],
-            [
-                'id'        => 2,
-                'name'      => 'testing2',
-                'email'     => 'testing2@gmail.com',
-                'password'  => bcrypt('testing2'),
-                'remember_token' => Str::random(60),
-                'address'   => 'Jl. Palmerah Selatan',
-                'phonenum'  => '08987654310',
-                'postalcode' => '54321',
-                'profile_photo_path' => 'users/user-2.png',
-                'is_admin'  => 0,
-                'created_at'=> Carbon::now(),
-                'updated_at'=> Carbon::now(),
             ]
         ]);
     }

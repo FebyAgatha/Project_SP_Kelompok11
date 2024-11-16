@@ -30,6 +30,11 @@
                                 {{ __('Cart') }}
                             </x-nav-link>
                         </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link class="text-white" href="{{ route('view.invoices') }}" :active="request()->routeIs('view.invoices')">
+                                {{ __('Invoices') }}
+                            </x-nav-link>
+                        </div>
                     @endif
                 @endauth
 
@@ -203,6 +208,11 @@
                 <div class="pt-1 pb-1 space-y-1">
                     <x-responsive-nav-link href="{{ route('shopping.cart') }}" :active="request()->routeIs('shopping.cart')">
                         {{ __('Cart') }}
+                    </x-responsive-nav-link>
+                </div>
+                <div class="pt-1 pb-1 space-y-1">
+                    <x-responsive-nav-link href="{{ route('view.invoices') }}" :active="request()->routeIs('view.invoices')">
+                        {{ __('Invoices') }}
                     </x-responsive-nav-link>
                 </div>
             @endif

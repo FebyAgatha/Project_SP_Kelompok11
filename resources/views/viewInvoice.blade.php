@@ -6,21 +6,21 @@
                 $orderID = [];
             @endphp
             @foreach($invoices as $invoice)
-                @if (!in_array($invoice->order_id, $orderID))
+                @if (!in_array($invoice->order_id, $orderID) && Auth::user()->id == $invoice->user_id)
                     @php
                         array_push($orderID, $invoice->order_id);
                     @endphp
 
                     <div class="border-2 border-[#555] rounded-xl bg-[#ccc] p-2 w-72 flex-col flex justify-center items-center">
                         <h4 class="text-xl font-black">Order ID: {{ $invoice['order_id'] }}</h4>
-                        
+
                         <div class="px-2 py-1 w-full flex justify-between items-center gap-3">
                             <a href="{{ route('after.order', ['orderId' => $invoice->order_id]) }}">View Invoice</a>
                             <a href="{{ route('download.invoice', ['orderId' => $invoice->order_id]) }}">Download Invoice</a>
                         </div>
                     </div>
                 @endif
-            
+
             @endforeach
         </div>
     </div>

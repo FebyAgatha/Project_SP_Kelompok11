@@ -35,7 +35,7 @@ class productController extends Controller
             'amount' => ['required', 'integer'],
             'image' => ['required', 'mimes:jpg,png,jpeg', 'max:5000']
         ]);
-        
+
         $name = strip_tags($request->input('name'));
 
         $extension = $request->file('image')->getClientOriginalExtension();
@@ -69,7 +69,7 @@ class productController extends Controller
             'product' => $product,
         ]);
     }
-    
+
     public function delete(Request $request){
         $user = Auth::user()->is_admin;
         $request->validate(['id' => 'required|integer']);
@@ -98,21 +98,21 @@ class productController extends Controller
             'image' => ['nullable', 'mimes:jpg,png,jpeg', 'max:5000']
         ]);
 
-        
+
         $product = Product::findOrFail($id);
 
         // Jika ada gambar baru yang diupload
         if ($request->hasFile('image')) {
             // Hapus gambar lama jika ada
             // Storage::disk('public')->delete('/products/' . $product->image);
-            
+
             $extension = $request->file('image')->getClientOriginalExtension();
             $filename = $request->name . '.' . $extension;
             $request->file('image')->storeAs('/products', $filename, 'public');
-            
+
             $product->image = $filename; // Update nama file gambar
         }
-        
+
         $name = strip_tags($request->input('name'));
 
         // Update data produk
@@ -212,7 +212,7 @@ class productController extends Controller
 
         $cart = $user->cart;
         $carts = Cart::with('product')->where('user_id', $user->id)->get();
-        
+
 
         foreach ($carts as $cart) {
             $product = Product::findOrFail($cart->product_id);
@@ -227,13 +227,24 @@ class productController extends Controller
             return redirect('/dashboard');
         }
 
-        Invoice::create([
-            'order_id' => $orderId,
-            'user_id' => $cart->user_id,
-            'product_id' => $cart->product_id,
-            'quantity' => $cart->quantity
-        ]);
-        
+
+        foreach($carts as $cart){
+            Invoice::create([
+                'order_id' => $orderId,
+                'user_id' => $cart->user_id,
+                'product_id' => $cart->product_id,
+                'quantity' => $cart->quantity
+            ]);
+            $othercarts = Cart::where('product_id', $cart->product_id)->get();
+            foreach($othercarts as $othercart){
+                $product = Product::findOrFail($othercart->product_id);
+                $othercart->quantity = min($othercart->quantity, $product->amount);
+                if($othercart->quantity <= 0){
+                    $othercart->delete();
+                }
+            }
+        }
+
         $cart = Cart::where('user_id', $user->id)->delete();
 
         return view('placeOrder', [
