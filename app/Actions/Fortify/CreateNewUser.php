@@ -34,7 +34,7 @@ class CreateNewUser implements CreatesNewUsers
         $password = strip_tags($input['password']);
         $address = strip_tags($input['address']);
         $phonenum = strip_tags($input['phonenum']);
-        $postalcode = strip_tags($input['phonenum']);
+        $postalcode = strip_tags($input['postalcode']);
 
         return User::create([
             'name' => $name,

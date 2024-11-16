@@ -28,7 +28,7 @@ Route::middleware([
     Route::get('/shopping-cart', [productController::class, 'Cart'])->name('shopping.cart');
     Route::delete('/delete-cart-product', [productController::class, 'deleteProduct'])->name("delete.cart.product");
 
-    
+
     Route::get('/checkout', [productController::class, 'checkout'])->name('check.out');
     Route::get('/invoice/{orderId}', [productController::class, 'placeOrder'])->name('place.order');
 
