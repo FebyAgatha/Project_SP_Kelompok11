@@ -16,16 +16,16 @@ Website ini menggunakan laravel sebagai framework untuk pengembangan. Sehingga u
 4. Buatkan .env dengan membuat copy-an dari .env.example
 5. Buatkan database di dalam PhpMyAdmin sesuai dengan nama yang tertera pada .env
 6. Jalankan command sebagai berikut:
-  __Powershell__
-  - composer install
-  - php artisan key:generate
-  - php artisan migrate:fresh --seed
-  - php artisan storage:link
-  - php artisan serve
+   - __Powershell__
+     - composer install
+     - php artisan key:generate
+     - php artisan migrate:fresh --seed
+     - php artisan storage:link
+     - php artisan serve
   
-  __Command Prompt__
-  - npm install
-  - npm run build
+   - __Command Prompt__
+     - npm install
+     - npm run build
 
 7. Extract file Foto.zip yang terdapat pada public storage dan keluarkan folder users & products ke public storage
 8. Website sudah bisa dijalankan secara lokal 
